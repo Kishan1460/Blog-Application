@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+  <div class="row g-3" style="display: block;">
+      {% if Post == 0  %}
+        <p style="font-size: larger;">No post to show</p>
+      {% else %}
+          {% for p in Post %}
+              <div class="col-12 col-md-6 col-lg-4">
+                  <div class="card">
+                  <img class="card-img-top" src="../static/post_pics/{{p.image}}" alt="Card image cap">
+                  <div class="card-body">
+                      <a href="{{ url_for("particular",user_id=p.id) }}" style="text-decoration: none;">
+                        <div style="width: 100px;">
+                          <h5 class="card-title">{{p.username}}</h5>
+                        </div>
+                    </a>
+                      <h5 class="card-title">{{p.title}}</h5>
+                      <p class="card-text">{{p.caption}}</p>
+                  </div>
+                  </div>
+              </div>
+          {% endfor %}
+      {% endif %}
+  </div>
+</div>
+{% endblock %}

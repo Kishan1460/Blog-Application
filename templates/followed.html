@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- {% for i in a %}
+<a href="{{ url_for("particular",user_id=i.id) }}" style="text-decoration: none;">
+    <div style="width: 100px;">
+        <p style="font-size: larger;">{{i.name}}</p>
+    </div>
+</a>
+
+{% endfor %} -->
+
+
+{% for user in a %}
+<a href="/user/{{user.id}}" style="text-decoration: none">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card w-50 text-center mt-3">
+                <div class="card-body">
+                    <h5 class="card-title">{{user.name}}</h5>  
+                    {% if user.id in m %}
+                    <a href="/unfollow/{{user.id}}" style="text-decoration: none; background-color: blue;">
+                        <h4>Unfollow</h4>
+                    </a> 
+                    {% else %}
+                    <a href="/follow/{{user.id}}" style="text-decoration: none; background-color: blue;">
+                        <h4>Follow</h4>
+                    </a> 
+                    {% endif %} 
+                </div>
+            </div>
+        </div>
+    </div>
+</a> 
+{% endfor %}
+
+{% endblock %}

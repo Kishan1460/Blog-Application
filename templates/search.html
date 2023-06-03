@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<form method="get" class="form-inline my-2 my-lg-0" >
+    <input type="search" class="form-control mr-sm-2" style="display: inline;width: 500px;" placeholder="Search" name="q" />
+    <button class="btn btn-outline-success my-2 my-sm-0" style="display: inline;" type="submit">
+      <i class="fas fa-search"></i>
+    </button>
+</form>
+{% if Users == 0 %}
+<h5 style="color: black;">No user with matching username</h5>
+{% else %}
+{% for user in Users %}
+<a href="/user/{{user.id}}" style="text-decoration: none">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card w-50 text-center mt-3">
+                <div class="card-body">
+                    <h5 class="card-title">{{user.name}}</h5>  
+                    {% if user.id in x %}
+                    <a href="/unfollow/{{user.id}}" style="text-decoration: none; background-color: blue;">
+                        <h4>Unfollow</h4>
+                    </a> 
+                    {% else %}
+                    <a href="/follow/{{user.id}}" style="text-decoration: none; background-color: blue;">
+                        <h4>Follow</h4>
+                    </a> 
+                    {% endif %} 
+                </div>
+            </div>
+        </div>
+    </div>
+</a> 
+{% endfor %}
+{% endif %}
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="py-4">
+    <div class="container">
+      <div class="row d-flex align-items-center justify-content-center">
+        <div style="max-width:420px;">
+          <form class="bg-white border py-4 px-5" enctype="multipart/form-data" method="POST">
+            <div class="text-center mb-3" style="color: black;">
+                <p>UPDATE POST</p>
+            </div>  
+            <div class="form-floating mb-3">
+              <input class="input is-large" type="text" name="title" placeholder="{{post.title}}" autofocus="">
+            </div>
+            <div class="form-floating mb-3">
+                <textarea class="form-control" name="caption" placeholder="{{post.caption}}" id="floatingTextarea2" style="height: 100px"></textarea>
+            </div>
+            <div class="mb-2">
+              <button class="btn btn-primary fw-bold w-100 bg-gradient" type="submit">Post</button>
+            </div>
+          </form>
+      </div>
+     </div>
+  </div>
+</section>
+<a href="{{ url_for('profile') }}" style="text-decoration: none;">
+    Back
+</a>
+{% endblock %}

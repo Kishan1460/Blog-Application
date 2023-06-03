@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block content %}
+ <a href="{{ url_for('cPost') }}" style="text-decoration: none;">
+    <i class="fa-regular fa-square-plus" style="margin-bottom: 30px;" onmouseover="this.style.color='red'" onMouseOut="this.style.color='white'">Create Post</i>
+  </a>
+
+<div style="display: flex;flex-direction: row;justify-content: center;">
+  <a href="{{ url_for("update_user") }}" onmouseover="this.style.color='red'" onMouseOut="this.style.color='white'" style="text-decoration: none">
+    <div style="width: 100px;">
+        <h4>Update User</h4>
+    </div>
+  </a>
+  <a href="{{ url_for("delete_user",user_id=current_user.id) }}" onmouseover="this.style.color='red'" onMouseOut="this.style.color='white'" style="text-decoration: none;margin-right: 10px;">
+    <div style="width: 100px;">
+        <h4>Delete User</h4>
+    </div>
+  </a>
+</div>
+
+<div class="container" style="width: 100%;display: flex;flex-direction: row; justify-content: center; margin-bottom: 10px;">
+  <div style="width: 100px;">
+      <h4>{{nposts}}</h4> 
+      <p style="font-size: larger;">Posts</p>   
+  </div>
+  
+
+  <a href="{{ url_for("follower",user_id=id) }}" onmouseover="this.style.color='red'" onMouseOut="this.style.color='white'" style="text-decoration: none;">
+    <div style="width: 100px;">
+        <h4>{{nfollowers}}</h4>
+        <p style="font-size: larger;">Followers</p>
+    </div>
+  </a>
+
+  <a href="{{ url_for("followed",user_id=id) }}" onmouseover="this.style.color='red'" onMouseOut="this.style.color='white'" style="text-decoration: none;">
+    <div style="width: 100px;">
+        <h4>{{nfollowed}}</h4>
+        <p style="font-size: larger;">Following</p>
+    </div>
+  </a>
+  
+
+  
+</div>
+<div class="container">
+  <div class="row g-3">
+      {% if Post == 0  %}
+        <p style="font-size: larger;">No post to show</p>
+      {% else %}
+          {% for p in Post %}
+              <div class="col-12 col-md-6 col-lg-4">
+                  <div class="card">
+                  <img class="card-img-top" src="../static/post_pics/{{p.image}}" alt="Card image cap">
+                  <div class="card-body">
+                      <h5 class="card-title">{{p.username}}</h5>
+                      <h5 class="card-title">{{p.title}}</h5>
+                      <p class="card-text">{{p.caption}}</p>
+                      <div style="display: flex;flex-direction: row;justify-content: center;">
+                        <a href="{{ url_for("update_post",post_id = p.post_id ) }}" style="text-decoration: none">
+                          <div style="width: 100px;">
+                              <h4>Update Post</h4>
+                          </div>
+                        </a>
+                        <a href="{{ url_for("delete_post",post_id = p.post_id ) }}" style="text-decoration: none">
+                          <div style="width: 100px;">
+                              <h4>Delete Post</h4>
+                          </div>
+                        </a>
+                      </div>
+                  </div>
+                  </div>
+              </div>
+          {% endfor %}
+      {% endif %}
+  </div>
+</div>
+{% endblock %}

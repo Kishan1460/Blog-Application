@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="py-4">
+    <div class="container">
+      <div class="row d-flex align-items-center justify-content-center">
+        <div style="max-width:420px;">
+          <form action="/createPost" class="bg-white border py-4 px-5" enctype="multipart/form-data" method="POST">
+            <div class="text-center mb-3" style="color: black;">
+                <p>ADD POST</p>
+            </div>  
+            <div class="form-floating mb-3">
+              <input class="form-control" name="title" placeholder="title" required="" type="text" /><label style="color: black;">Title</label>
+            </div>
+            <div class="form-floating mb-3">
+                <textarea class="form-control" name="caption" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+                <label for="floatingTextarea2" style="color: black;">Caption/Description</label>
+            </div>
+            <input class="form-control mb-3" name="file" required="" type="file" />
+            <div class="mb-2">
+              <button class="btn btn-primary fw-bold w-100 bg-gradient" href="/post" type="submit">Post</button>
+            </div>
+          </form>
+      </div>
+     </div>
+  </div>
+</section>
+<a href="{{ url_for('index') }}" style="text-decoration: none;">
+    Back
+</a>
+{% endblock %}
